@@ -10,7 +10,7 @@ options = Options()
 options.add_experimental_option("detach", True)
 
 # Specify the Chrome binary path
-options.binary_location = '/opt/render/project/src/.venv/lib/python3.7/site-packages/selenium/webdriver/chrome/'  # Replace with the correct path to Chrome binary
+options.binary_location = '/usr/bin/google-chrome'  # Replace with the correct path to Chrome binary
 
 # Download the latest ChromeDriver
 chrome_driver_path = ChromeDriverManager().install()
