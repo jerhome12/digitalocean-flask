@@ -1,5 +1,4 @@
-Flask
-openpyxl
-pandas
+PyGithub
+Requests
 selenium
 webdriver_manager
