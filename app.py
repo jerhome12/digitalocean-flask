@@ -9,19 +9,10 @@ import requests
 options = Options()
 options.add_experimental_option("detach", True)
 
-# Download the latest ChromeDriver
-chrome_driver_path = ChromeDriverManager().install()
 
-# Authenticate with your GitHub account
-g = Github('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')  # Replace with your GitHub access token
-repo = g.get_repo('https://github.com/jerhome12/digitalocean-flask')  # Replace with your repository details
+chrome_driver_url = 'https://raw.githubusercontent.com/your-username/your-repository/main/chromedriver'
+driver = webdriver.Chrome(executable_path=chrome_driver_url, options=options)
 
-# Upload the ChromeDriver file to your GitHub repository
-contents = repo.get_contents('chromedriver', ref='main')
-repo.update_file('chromedriver', 'Updating ChromeDriver', chrome_driver_path, contents.sha, branch='main')
-
-# Set the URL of the ChromeDriver file on your GitHub repository
-chrome_driver_url = f'https://github.com/jerhome12/digitalocean-flask/tree/master/drivers'
 
 # Set up the Chrome driver with the provided URL
 driver = webdriver.Chrome(service=Service(executable_path=chrome_driver_url), options=options)
