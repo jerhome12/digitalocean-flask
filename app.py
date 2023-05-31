@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from github import Github
 import requests
-
+from pprint import pprint
 
 options = Options()
 options.add_experimental_option("detach", True)
@@ -12,21 +12,8 @@ options.add_experimental_option("detach", True)
 # Download the latest ChromeDriver
 chrome_driver_path = ChromeDriverManager().install()
 
-# Authenticate with your GitHub account
-g = Github('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')  # Replace with your GitHub access token
-repo = g.get_repo('jerhome12/digitalocean-flask/')  # Replace with your repository details
-
-
-# Upload the ChromeDriver file to your GitHub repository
-contents = repo.get_contents('chromedriver', ref='main')
-repo.update_file('chromedriver', 'Updating ChromeDriver', chrome_driver_path, contents.sha, branch='main')
-
-# Set the URL of the ChromeDriver file on your GitHub repository
-chrome_driver_url = f'https://raw.githubusercontent.com/jerhome12/digitalocean-flask/main/chromedriver'
-
-
 # Set up the Chrome driver with the provided URL
-driver = webdriver.Chrome(service=Service(executable_path=chrome_driver_url), options=options)
+driver = webdriver.Chrome(service=Service(executable_path=chrome_driver_path), options=options)
 
 # Install the chrome driver
 driver.maximize_window()
