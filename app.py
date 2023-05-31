@@ -1,12 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 
-# Configure Chrome options for headless mode
-chrome_options = Options()
-chrome_options.add_argument('--headless')  # Run Chrome in headless mode
+options = Options()
+options.add_experimental_option("detach", True)
 
-# Create a new instance of the Chrome driver with headless options
-driver = webdriver.Chrome(options=chrome_options)
+# Install the chrome driver
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
+driver.maximize_window()
 
 # Navigate to a web page
 driver.get("https://www.digitalocean.com/company/contact/abuse#intrusion")
