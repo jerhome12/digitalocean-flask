@@ -14,7 +14,7 @@ chrome_driver_path = ChromeDriverManager().install()
 
 # Authenticate with your GitHub account
 g = Github('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')  # Replace with your GitHub access token
-repo = g.get_repo('jerhome12/digitalocean-flask')  # Replace with your repository details
+repo = g.get_repo('jerhome12/digitalocean-flask/')  # Replace with your repository details
 
 
 # Upload the ChromeDriver file to your GitHub repository
