@@ -1,21 +1,20 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from github import Github
-import requests
-from pprint import pprint
+import os
 
 options = Options()
-options.add_experimental_option("detach", True)
+options.add_argument("--headless")  # Run Chrome in headless mode
 
-# Specify the Chrome binary path
-options.binary_location = '/usr/bin/google-chrome'  # Replace with the correct path to Chrome binary
+# Set the path to the ChromeDriver executable
+chrome_driver_path = "/usr/bin/chromedriver"  # Adjust the path based on your Render environment
 
-# Download the latest ChromeDriver
-chrome_driver_path = ChromeDriverManager().install()
+# Set the path to the Chrome binary
+chrome_binary_path = os.getenv('GOOGLE_CHROME_BIN')  # Fetch the Chrome binary path from the environment variable
 
-# Set up the Chrome driver with the provided URL
+options.binary_location = chrome_binary_path
+
+# Set up the Chrome driver with the provided paths
 driver = webdriver.Chrome(service=Service(executable_path=chrome_driver_path), options=options)
 
 # Install the chrome driver
@@ -26,6 +25,7 @@ driver.get("https://www.digitalocean.com/company/contact/abuse#intrusion")
 
 agree = driver.find_element("xpath", './/*[@id="truste-consent-button"]')
 agree.click()
+
 
 
 
