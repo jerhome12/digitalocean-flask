@@ -1,10 +1,21 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
+from github import Github
+import requests
+
 
 options = Options()
 options.add_experimental_option("detach", True)
+
+# Download the latest ChromeDriver
+chrome_driver_path = ChromeDriverManager().install()
+
+# Authenticate with your GitHub account
+g = Github('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')  # Replace with your GitHub access token
+repo = g.get_repo('your-username/your-repository')  # Replace with your repository details
+
 
 # Install the chrome driver
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
